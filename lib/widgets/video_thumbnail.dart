@@ -42,7 +42,9 @@ class _VideoThumbnailState extends State<VideoThumbnail> {
   initState() {
     super.initState();
     if (isNotEmpty(widget.url)) {
-      _controller = VideoPlayerController.networkUrl(Uri.parse(widget.url!));
+      _controller = VideoPlayerController.networkUrl(
+        Uri.parse(widget.url!),
+      );
     } else if (isNotEmpty(widget.path)) {
       _controller = VideoPlayerController.asset(widget.path!);
     }
@@ -72,7 +74,9 @@ class _VideoThumbnailState extends State<VideoThumbnail> {
                         height: height,
                         width: double.infinity,
                         color: widget.theme.videoBgColor,
-                        child: VideoPlayer(_controller!),
+                        child: AspectRatio(
+                            aspectRatio: 4 / 1,
+                            child: VideoPlayer(_controller!)),
                       ),
               ),
               SizedBox(
